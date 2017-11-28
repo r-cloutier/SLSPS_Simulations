@@ -68,16 +68,15 @@ Alternatively with the appropriate units::
   dist = 1.83 parsecs
   Prot = 121.00 days
   
-Or we Similarly for planetary system parameters::
-
-  
-
+All of the contents of the loaded SLSPS simulation file can be viewed in a
+similar ways as above. See the ipython notebook ipython_example.ipynb for a more
+detailed description of the files contents.
 
 
 Acknowledgement
 ---------------
 
-The results presented in the slsps pickles are derived from the simulations in
-Cloutier et al 2017 (link to paper). If you use the results of these simulations
-in your own work please cite the aforementioned study.
-
+The results presented in the SLSPS simulation files were derived from the
+Monte-Carlo simulations of the SLSPS presented in Cloutier et al 2017 (link to
+paper). If you use the results of these simulations in your own work please
+cite the aforementioned study.
