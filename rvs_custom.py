@@ -1,6 +1,3 @@
-'''
-Some useful functions.
-'''
 from imports import *
 
 global G
@@ -47,6 +44,12 @@ def semimajoraxis(P_days, Ms_Msun, mp_Mearth):
     '''Compute the semimajor axis in AU from Kepler's third law.'''
     P, Ms, mp = days2sec(P_days), Msun2kg(Ms_Msun), Mearth2kg(mp_Mearth)
     return m2AU((G*(Ms+mp)*P*P / (4*np.pi*np.pi))**(1./3))
+
+
+def period_sma(a_AU, Ms_Msun, mp_Mearth):
+    '''Compute the orbital period in days from Kepler's third law.'''
+    a, Ms, mp = AU2m(a_AU), Msun2kg(Ms_Msun), Mearth2kg(mp_Mearth)
+    return sec2days(np.sqrt(4*np.pi*np.pi*a**3 / (G*(Ms+mp))))
 
 
 def projected_sep(SMA_AU, dist_pc):
