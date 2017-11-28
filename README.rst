@@ -38,7 +38,7 @@ target stars and their simulated planetary systems.
 
 For example, we can view the J-band magnitudes of all of the target stars::
 
-  print self.Jmag
+  $ print self.Jmag
   
 We can also view some select properties of one of the host stars::
 
