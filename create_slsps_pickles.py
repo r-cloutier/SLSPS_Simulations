@@ -1,9 +1,6 @@
-print 'os.chdir("..")'
-print 'from BSresults import *'
-print 'os.chdir("SLSPS_Simulations")'
-
 from imports import *
 import rvs_custom as rvs
+
 
 class SLSPS_Simulation():
 
@@ -171,20 +168,8 @@ class SLSPS_Simulation():
         f.close()
 
 
-
 def loadpickle(fname):
     f = open(fname, 'rb')
     self = pickle.load(f)
     f.close()
     return self
-
-
-def create_pickles(topfolder, outname):
-    '''
-    Create simulation output to be put on github for one realization from the 
-    survey version containing in topfolder (e.g. 'pickles_optimized100_final')
-    '''
-    self = SLSPS_Simulation('../%s/BSresults'%topfolder,
-                            'Simulations/%s'%outname)
-    self.create_SLSPS_simulation()
-    self._pickleobject()
