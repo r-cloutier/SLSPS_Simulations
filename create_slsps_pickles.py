@@ -29,7 +29,6 @@ class SLSPS_Simulation():
         # get planetary system parameters
         self._get_planets(d)
         
-        
         self._clean_up()
         self._pickleobject()
         
@@ -91,19 +90,25 @@ class SLSPS_Simulation():
         '''
         Get the planetary system parameters from one MC realization. 
         '''
-        self.nplanets = d.nplanets_EP[inds].astype(int)
-        self.nplanets_detected = d.nplanets_detectedCV_noalias_EP[inds].astype(nit)
+        self.nplanets = d.nplanets_EP[self._inds].astype(int)
+        self.nplanets_detected = \
+                        d.nplanets_detectedCV_noalias_EP[self._inds].astype(int)
         self.Ps, self.T0s = d.Ps_EP[self._inds], d.T0s_EP[self._inds]
         self.rps, self.mps = d.Rps_EP[self._inds], d.Mps_EP[self._inds]
         self.incs, self.eccs = d.incs_EP[self._inds], d.eccs_EP[self._inds]
         self.HZ_flags = d.inHZ_EP[self._inds]
+        self.imagable_flags = d.imagable_EP[self._inds]
         self.detection_flags = d.detectedCV_noalias_EP[self._inds]
 
         # compute quantities of interest 
         self.mpsinis = self.mps * np.sin(np.deg2rad(self.incs))
-        self.smas = rvs.semimajoraxis(self.Ps, self.Ms, self.mps)
-        self.Ks = rvs.RV_K(self.Ps, self.Ms, self.mps, self.eccs, self.incs)
-        self.seps = rvs.projected_sep(self.smas, self.dist)
+        Ms2d = np.repeat(self.Ms, self.Ps.shape[1]).reshape(self.Nstar,
+                                                            self.Ps.shape[1])
+        self.smas = rvs.semimajoraxis(self.Ps, Ms2d, self.mps)
+        self.Ks = rvs.RV_K(self.Ps, Ms2d, self.mps, self.eccs, self.incs)
+        dist2d = np.repeat(self.dist,self.Ps.shape[1]).reshape(self.Nstar,
+                                                               self.Ps.shape[1])
+        self.seps = rvs.projected_sep(self.smas, dist2d)
         self.albedos = np.zeros(self.Ps.shape) + albedo
         self.contrasts = rvs.planet_contrast(self.rps, self.smas, self.albedos)
 
@@ -117,6 +122,7 @@ class SLSPS_Simulation():
                             'incs' : 'deg',
                             'eccs' : '',
                             'HZ_flags' : 'binary flag',
+                            'imagable_flags' : 'binary flag',
                             'detection_flags' : 'binary flag',
                             'mpsinis' : 'Earth masses',
                             'smas' : 'AU',
@@ -138,6 +144,7 @@ class SLSPS_Simulation():
         self.incs            = self.incs[:,:nplanets_max]
         self.eccs            = self.eccs[:,:nplanets_max]
         self.HZ_flags        = self.HZ_flags[:,:nplanets_max]
+        self.imagable_flags  = self.imagable_flags[:,:nplanets_max]
         self.detection_flags = self.detection_flags[:,:nplanets_max]        
         self.mpsinis         = self.mpsinis[:,:nplanets_max]
         self.smas            = self.smas[:,:nplanets_max]
@@ -163,7 +170,7 @@ class SLSPS_Simulation():
         pickle.dump(self, f)
         f.close()
 
-        
+
 
 def loadpickle(fname):
     f = open(fname, 'rb')
@@ -172,17 +179,12 @@ def loadpickle(fname):
     return self
 
 
-def create_pickles(topfolder):
+def create_pickles(topfolder, outname):
     '''
-    Read-in all pickles from a given simulation (in say 
-    'pickles_optimized100_final') and create an slsps_pickle to be pushed to 
-    github.
+    Create simulation output to be put on github for one realization from the 
+    survey version containing in topfolder (e.g. 'pickles_optimized100_final')
     '''
-    # Get BSresults object
-    self = loadpickle('../%s/BSresults'%topfolder)
-
-    # Create slsps_pickle for each BS simulation
-    #TEMP
-    #for i in range(self.npickles):
-    for i in range(self.npickles)[:1]:
-	d = slsps_pickle(loadpickle('../%s'%self.pickles[i][:-1]))
+    self = SLSPS_Simulation('../%s/BSresults'%topfolder,
+                            'Simulations/%s'%outname)
+    self.create_SLSPS_simulation()
+    self._pickleobject()
