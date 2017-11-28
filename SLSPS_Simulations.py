@@ -32,6 +32,7 @@ class SLSPS_Simulation():
         self._get_star(d)
         self._get_planets(d)
         self._get_auxiliary(d)
+	self._get_attribute_units()
         
         self._clean_up()
         self._pickleobject()
@@ -49,19 +50,7 @@ class SLSPS_Simulation():
         self.Prot, self.vsini = d.Prot_EP[self._inds], d.vsini_EP[self._inds]
         self.I, self.fB = d.I_EP[self._inds], d.B_EP[self._inds]
         self._get_HZ_Plims()
-        self.starunits = {'starnums' : '',
-                          'Jmag' : '',
-                          'SpT' : 'numerical spectral type',
-                          'Ms' : 'Solar masses',
-                          'Rs' : 'Solar radii',
-                          'Teff' : 'Kelvin',
-                          'dist' : 'parsecs',
-                          'Prot' : 'days',
-                          'vsini' : 'km/s',
-                          'I' : 'deg',
-                          'fB' : 'kiloGauss',
-                          'HZPlims' : 'days'}
-
+        
 
     def _get_HZ_Plims(self):
         '''
@@ -117,23 +106,6 @@ class SLSPS_Simulation():
         self.contrasts = rvs.planet_contrast(self.rps, self.smas, self.albedos)
 
         self._trim_planet_arrays()
-        self.planetunits = {'nplanets' : '',
-                            'nplanets_detected' : '',
-                            'Ps' : 'days',
-                            'T0s' : 'BJD',
-                            'rps' : 'Earth radii',
-                            'mps' : 'Earth masses',
-                            'incs' : 'deg',
-                            'eccs' : '',
-                            'HZ_flags' : 'binary flag',
-                            'imagable_flags' : 'binary flag',
-                            'detection_flags' : 'binary flag',
-                            'mpsinis' : 'Earth masses',
-                            'smas' : 'AU',
-                            'Ks' : 'm/s',
-                            'seps' : 'arcsec',
-                            'albedos' : '',
-                            'contrasts' : ''}
                             
                             
     def _trim_planet_arrays(self):
@@ -157,14 +129,48 @@ class SLSPS_Simulation():
         self.albedos         = self.albedos[:,:nplanets_max]
         self.contrasts       = self.contrasts[:,:nplanets_max]
 
+
     def _get_auxiliary(self, d, albedo=.3):
         '''
         Get any outstanding parameters of interest.
         '''
         self.nobs = d.nobs_EP[self._inds]
         self.sigmaRV = d.sigmaRV_EP[self._inds]
-        
-        
+
+
+    def _get_attribute_units(self):
+        self.units_star = {'starnums' : '',
+                           'Jmag' : '',
+                           'SpT' : 'numerical spectral type',
+                           'Ms' : 'solar masses',
+                           'Rs' : 'solar radii',
+                           'Teff' : 'kelvin',
+                           'dist' : 'parsecs',
+                           'Prot' : 'days',
+                           'vsini' : 'km/s',
+                           'I' : 'deg',
+                           'fB' : 'kiloGauss',
+                           'HZPlims' : 'days'}
+        self.units_planet = {'nplanets' : '',
+                             'nplanets_detected' : '',
+                             'Ps' : 'days',
+                             'T0s' : 'BJD',
+                             'rps' : 'Earth radii',
+                             'mps' : 'Earth masses',
+                             'incs' : 'deg',
+                             'eccs' : '',
+                             'HZ_flags' : 'binary flag',
+                             'imagable_flags' : 'binary flag',
+                             'detection_flags' : 'binary flag',
+                             'mpsinis' : 'Earth masses',
+                             'smas' : 'AU',
+                             'Ks' : 'm/s',
+                             'seps' : 'arcsec',
+                             'albedos' : '',
+                             'contrasts' : ''}
+        self.units_auxiliary = {'nobs' : '',
+                                'sigmaRV' : 'm/s'}
+
         
     def _clean_up(self):
         '''
