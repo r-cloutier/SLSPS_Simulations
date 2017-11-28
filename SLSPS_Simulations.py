@@ -102,7 +102,7 @@ class SLSPS_Simulation():
         dist2d = np.repeat(self.dist,self.Ps.shape[1]).reshape(self.Nstar,
                                                                self.Ps.shape[1])
         self.seps = rvs.projected_sep(self.smas, dist2d)
-        self.albedos = np.zeros(self.Ps.shape) + albedo
+        self.albedos = self.Ps*0 + albedo
         self.contrasts = rvs.planet_contrast(self.rps, self.smas, self.albedos)
 
         self._trim_planet_arrays()
