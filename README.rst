@@ -4,12 +4,12 @@ Simulation files from the simulated SPIRou Legacy Survey-Planet Search (SLS-PS)
 Overview
 --------
 
-Cloutier et al 2017 (link to paper) ran a detailed Monte-Carlo simulation of 
+Cloutier et al 2018 (link to paper) ran a detailed Monte-Carlo simulation of 
 the SLS-PS to make predictions of the survey's planet yield based on our 
 current understanding of the occurrence rates of planets around M dwarfs and 
 host star properties. This repository provides the details from one 
 Monte-Carlo realization for each of the six survey versions presented in Sect. 
-13 of Cloutier et al 2017. 
+13 of Cloutier et al 2018. 
 
 This repository includes the data presented for each survey version, in the 
 form of a python pickle (https://docs.python.org/3/library/pickle.html), along
