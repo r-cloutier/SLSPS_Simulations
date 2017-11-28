@@ -70,8 +70,5 @@ def get_baraffe_Ls(Ms, age=2):
     barTeff = baraffe[:,2]    # K
     barL = baraffe[:,4]       # log(L/Lsun)
     # Interpolate to get L
-    lint_L = lint(np.array([barmass,barage]).T,barL)
-    L=10**(lint_L(Ms,age))   # Ls
-    sigma=5.67037e-8
-    Rout=np.sqrt(L*3.846e26/(4*np.pi*sigma*Teff*Teff*Teff*Teff))  # meters
-    return L
+    lint_L = lint(np.array([barmass, barage]).T, barL)
+    return 10**(lint_L(Ms, float(age)))   # Lsun
