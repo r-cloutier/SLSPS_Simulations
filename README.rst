@@ -18,24 +18,25 @@ with the scripts required to access the data.
 Quick Example
 -------------
 
-First clone the repository which includes all necessary python scripts and the
-individual pickles::
+First clone the repository which includes all of the necessary python scripts
+and the individual simulation files for each of the six survey versions::
 
   git clone https://github.com/r-cloutier/SLSPS_Pickles.git
 
-Then from an ipython shell:
+Then from an ipython shell, first import the library and load a sample SLSPS
+simulation:
 
 .. code:: python
 
-   from slsps_pickles import *
-   self = loadpickle('pickles/star001/slsps_pickle_star001_systID001') # load an example pickle
-   self.report_star()   # view stellar parameters
-   self.report_planet() # view each planet's parameters
+   from SLSPS_Simulations import *
+   self = loadpickle('Simulations/SLSPS_Optimized')
 
-All stellar parameters can be accessed individually from the *self.star* object.
-For example::
+The loaded file contains data for one realization of the *Optimized* version
+of the simulated SLSPS. The data included are either pertaining to the host
+star, the planetary system, or auxiliary parameters. The parameters from each
+class and their units can be quickly viewed via:: 
 
-  print self.star.Teff, self.star.units.Teff
+  print self.units_star
 
 Similarly, all planetary parameters can be accessed individually from the
 *self.planet* object::
