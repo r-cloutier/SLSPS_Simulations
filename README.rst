@@ -38,7 +38,7 @@ target stars and their simulated planetary systems.
 
 For example, we can view the J-band magnitudes of all of the target stars::
 
-  print self.Jmag
+  >>> print self.Jmag
   [  5.244   5.335   5.189   5.721   5.714   6.222   7.085   6.884   5.934
    5.583   5.95    6.505   6.104   6.106   6.789   6.581   7.258   6.905
    6.301   6.838   6.314   6.724   7.514   6.706   7.09    6.51    7.124
