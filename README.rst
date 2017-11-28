@@ -22,7 +22,8 @@ First clone the repository which includes all of the necessary python scripts
 and the individual simulation files for each of the six survey versions::
 
   git clone https://github.com/r-cloutier/SLSPS_Pickles.git
-
+  cd ./SLSPS_Simulations
+  
 Then from an ipython shell, first import the library and load a sample SLSPS
 simulation:
 
@@ -31,26 +32,30 @@ simulation:
    from SLSPS_Simulations import *
    self = loadpickle('Simulations/SLSPS_Optimized')
 
-The loaded file contains data for one realization of the *Optimized* version
-of the simulated SLSPS. The data included are either pertaining to the host
-star, the planetary system, or auxiliary parameters. The parameters from each
-class and their units can be quickly viewed via:: 
+The loaded SLSPS simulation *self* contains all of the information for a single
+realization of the *Optimized* survey version including information about the
+target stars and their simulated planetary systems.
 
-  print self.units_star
+For example, we can view the J-band magnitudes of all of the target stars::
 
-Similarly, all planetary parameters can be accessed individually from the
-*self.planet* object::
-
-  print self.planet.Ps, self.planet.units.Ps
-
-Lastly all time-series, in the form of numpy arrays, can be accessed from the
-*self.timeseries* object. For example::
-
-  import pylab as plt
-  plt.errorbar(self.timeseries.bjd-245e4, self.timeseries.rvs, self.timeseries.erv, fmt='k.')
-  plt.xlabel('BJD - 2,450,000'), plt.ylabel('Radial Velocity (m/s)')
-  plt.show()
+  print self.Jmag
   
+We can also view some select properties of one of the host stars::
+
+  i = 0
+  print self.Jmag[i], self.Teff[i], self.dist[i], self.Prot[i]
+
+Alternatively with the appropriate units::
+
+  attributes = ['Jmag', 'Teff', 'dist', 'Prot']
+  for j in range(len(attributes)):
+    print '%s = %.2f %s' %(attributes[j], getattr(self, attributes[j])[i], self.units_star[attributes[j]])
+
+Or we Similarly for planetary system parameters::
+
+  
+
+
 
 Acknowledgement
 ---------------
@@ -58,3 +63,4 @@ Acknowledgement
 The results presented in the slsps pickles are derived from the simulations in
 Cloutier et al 2017 (link to paper). If you use the results of these simulations
 in your own work please cite the aforementioned study.
+
