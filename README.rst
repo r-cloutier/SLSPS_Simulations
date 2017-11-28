@@ -36,7 +36,9 @@ The loaded SLSPS simulation *self* contains all of the information for a single
 realization of the *Optimized* survey version including information about the
 target stars and their simulated planetary systems.
 
-For example, we can view the J-band magnitudes of all of the target stars::
+For example, we can view the J-band magnitudes of all of the target stars:
+
+.. code:: python
 
   >>> print self.Jmag
   [  5.244   5.335   5.189   5.721   5.714   6.222   7.085   6.884   5.934
