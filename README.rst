@@ -54,13 +54,17 @@ For example, we can view the J-band magnitudes of all of the target stars:
    7.337   7.787   9.945   7.819   9.35    9.029   8.367   7.901   8.768
    8.323]
   
-We can also view some select properties of one of the host stars::
+We can also view some select properties of one of the host stars:
+
+.. code:: python
 
   >>> i = 0
   >>> print self.Jmag[i], self.Teff[i], self.dist[i], self.Prot[i]
   5.244 3229.971594 1.833516685 121.0
   
-Alternatively with the appropriate units::
+Alternatively with the appropriate units:
+
+.. code:: python
 
   >>> attributes = ['Jmag', 'Teff', 'dist', 'Prot']
   >>> for j in range(len(attributes)):
