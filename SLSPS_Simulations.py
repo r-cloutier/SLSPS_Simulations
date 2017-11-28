@@ -2,9 +2,17 @@ from imports import *
 import rvs_custom as rvs
 
 
+def loadpickle(fname):
+    f = open(fname, 'rb')
+    self = pickle.load(f)
+    f.close()
+    return self
+
+
 class SLSPS_Simulation():
 
     def __init__(self, pickle_name, fname):
+        
         self._pickle_name, self.fname = pickle_name, fname
 
 
@@ -20,11 +28,10 @@ class SLSPS_Simulation():
         self._inds = np.array([np.where(d.starnum_EP == starnum)[0][0]
                                for starnum in np.unique(d.starnum_EP)]) 
 
-        # get stellar parameters
+        # get parameters
         self._get_star(d)
-        
-        # get planetary system parameters
         self._get_planets(d)
+        self._get_auxiliary(d)
         
         self._clean_up()
         self._pickleobject()
@@ -150,6 +157,14 @@ class SLSPS_Simulation():
         self.albedos         = self.albedos[:,:nplanets_max]
         self.contrasts       = self.contrasts[:,:nplanets_max]
 
+    def _get_auxiliary(self, d, albedo=.3):
+        '''
+        Get any outstanding parameters of interest.
+        '''
+        self.nobs = d.nobs_EP[self._inds]
+        self.sigmaRV = d.sigmaRV_EP[self._inds]
+        
+        
         
     def _clean_up(self):
         '''
@@ -166,10 +181,3 @@ class SLSPS_Simulation():
         f = open(self.fname, 'wb')
         pickle.dump(self, f)
         f.close()
-
-
-def loadpickle(fname):
-    f = open(fname, 'rb')
-    self = pickle.load(f)
-    f.close()
-    return self
