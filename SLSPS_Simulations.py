@@ -25,13 +25,14 @@ class SLSPS_Simulation():
 
         # get single realization indices 
         self.Nstar = np.unique(d.starnum_EP).size
-        self._inds = np.array([np.where(d.starnum_EP == starnum)[0][0]
+        self._inds = np.array([np.where(d.starnum_EP == starnum)[0][3]
                                for starnum in np.unique(d.starnum_EP)]) 
 
         # get parameters
         self._get_star(d)
         self._get_planets(d)
         self._get_auxiliary(d)
+        self._get_attribute_descriptions()
 	self._get_attribute_units()
         
         self._clean_up()
@@ -137,9 +138,48 @@ class SLSPS_Simulation():
         self.sigmaRV = d.sigmaRV_EP[self._inds]
 
 
+    def _get_attribute_descriptions(self):
+        self.descriptions_star = {'Jmag' : 'J-band magnitude',
+                                  'SpT' : 'numerical spectral type',
+                                  'Ms' : 'stellar mass',
+                                  'Rs' : 'stellar radius',
+                                  'Teff' : 'effective temperature',
+                                  'dist' : 'distance',
+                                  'Prot' : 'rotation period',
+                                  'vsini' : 'projected rotation velocity',
+                                  'I' :
+                        'stellar spin-axis inclination to the line-of-sight',
+                                  'fB' : 'magnetic field strength',
+                                  'HZPlims' :
+                        'habitable zone orbital period limits'}
+        self.descriptions_planet = {'nplanets' : 'planet multiplicity',
+                                   'nplanets_detected' :
+                        'number of planets detected in the system',
+                                   'Ps' : 'orbital periods',
+                                   'T0s' : 'times of inferior conjuction',
+                                   'rps' : 'planetary radii',
+                                   'mps' : 'planetary masses',
+                                   'incs' :
+                        'orbital inclinations to the plane of the sky',
+                                   'eccs' : 'orbital eccentricities',
+                                   'HZ_flags' : 'habitable zone flags',
+                                   'imagable_flags' :
+                        'potentially imagable planet flags',
+                                   'detection_flags' : 'SPIRou detection flags',
+                                   'mpsinis' : 'minimum planetary masses',
+                                   'smas' : 'semi-major axes',
+                                   'Ks' : 'RV semi-amplitudes',
+                                   'seps' : 'projected separations',
+                                   'albedos' : 'geometric albedos',
+                                   'contrasts' : 'planet-star contrast'}
+        self.description_auxiliary = {'nobs' : 'number of RV measurements',
+                                      'sigmaRV' :
+                                      'median RV measurement uncertainty'}
+
+    
     def _get_attribute_units(self):
         self.units_star = {'Jmag' : '',
-                           'SpT' : 'numerical spectral type',
+                           'SpT' : '',
                            'Ms' : 'solar masses',
                            'Rs' : 'solar radii',
                            'Teff' : 'kelvin',
