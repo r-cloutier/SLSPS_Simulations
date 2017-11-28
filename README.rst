@@ -62,7 +62,7 @@ We can also view some select properties of one of the host stars:
   >>> print self.Jmag[i], self.Teff[i], self.dist[i], self.Prot[i]
   5.244 3229.971594 1.833516685 121.0
   
-Alternatively with the appropriate units:
+Alternatively and with the appropriate units:
 
 .. code:: python
 
@@ -76,7 +76,7 @@ Alternatively with the appropriate units:
   
 All of the contents of the loaded SLSPS simulation file can be viewed in a
 similar ways as above. See the ipython notebook ipython_example.ipynb for a more
-detailed description of the files contents.
+detailed description and visualization of the files contents.
 
 
 Acknowledgement
