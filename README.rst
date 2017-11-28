@@ -29,8 +29,8 @@ simulation:
 
 .. code:: python
 
-   from SLSPS_Simulations import *
-   self = loadpickle('Simulations/SLSPS_Optimized')
+   >>> from SLSPS_Simulations import *
+   >>> self = loadpickle('Simulations/SLSPS_Optimized')
 
 The loaded SLSPS simulation *self* contains all of the information for a single
 realization of the *Optimized* survey version including information about the
@@ -54,15 +54,20 @@ For example, we can view the J-band magnitudes of all of the target stars::
   
 We can also view some select properties of one of the host stars::
 
-  i = 0
-  print self.Jmag[i], self.Teff[i], self.dist[i], self.Prot[i]
-
+  >>> i = 0
+  >>> print self.Jmag[i], self.Teff[i], self.dist[i], self.Prot[i]
+  5.244 3229.971594 1.833516685 121.0
+  
 Alternatively with the appropriate units::
 
-  attributes = ['Jmag', 'Teff', 'dist', 'Prot']
-  for j in range(len(attributes)):
-    print '%s = %.2f %s' %(attributes[j], getattr(self, attributes[j])[i], self.units_star[attributes[j]])
-
+  >>> attributes = ['Jmag', 'Teff', 'dist', 'Prot']
+  >>> for j in range(len(attributes)):
+  ...     print '%s = %.2f %s' %(attributes[j], getattr(self, attributes[j])[i], self.units_star[attributes[j]])
+  Jmag = 5.24 
+  Teff = 3229.97 kelvin
+  dist = 1.83 parsecs
+  Prot = 121.00 days
+  
 Or we Similarly for planetary system parameters::
 
   
