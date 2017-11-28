@@ -43,7 +43,6 @@ class SLSPS_Simulation():
         '''
         Get the stellar parameters from one MC realization. 
         '''
-        self.starnums = np.arange(self.Nstar)
         self.Jmag, self.SpT = d.Jmag_EP[self._inds], d.SpT_EP[self._inds]
         self.Ms, self.Rs = d.Ms_EP[self._inds], d.Rs_EP[self._inds]
         self.Teff, self.dist = d.Teff_EP[self._inds], d.dist_EP[self._inds]
@@ -139,8 +138,7 @@ class SLSPS_Simulation():
 
 
     def _get_attribute_units(self):
-        self.units_star = {'starnums' : '',
-                           'Jmag' : '',
+        self.units_star = {'Jmag' : '',
                            'SpT' : 'numerical spectral type',
                            'Ms' : 'solar masses',
                            'Rs' : 'solar radii',
