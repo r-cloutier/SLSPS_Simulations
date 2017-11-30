@@ -24,7 +24,7 @@ and the individual simulation files for each of the six survey versions::
   git clone https://github.com/r-cloutier/SLSPS_Simulations.git
   cd ./SLSPS_Simulations
   
-Then from an ipython shell, first import the library and load a sample SLSPS
+Then from an ipython shell, import the library and load a sample SLSPS
 simulation:
 
 .. code:: python
