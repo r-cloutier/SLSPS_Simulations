@@ -21,7 +21,7 @@ Quick Example
 First clone the repository which includes all of the necessary python scripts
 and the individual simulation files for each of the six survey versions::
 
-  git clone https://github.com/r-cloutier/SLSPS_Pickles.git
+  git clone https://github.com/r-cloutier/SLSPS_Simulations.git
   cd ./SLSPS_Simulations
   
 Then from an ipython shell, first import the library and load a sample SLSPS
