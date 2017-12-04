@@ -77,7 +77,7 @@ Or viewed alternatively and with the appropriate units:
   Prot = 121.00 days
   
 All of the contents of the loaded SLS-PS simulation file can be viewed in
-similar ways as above. See the ipython notebook ipython_slsps_example_.
+similar ways as above. See the ipython notebook ipython_slsps_example_
 for a more detailed description and visualization of each file's contents.
 
 .. _ipython_slsps_example: https://github.com/r-cloutier/SLSPS_Simulations/blob/master/ipython_slsps_example.ipynb
