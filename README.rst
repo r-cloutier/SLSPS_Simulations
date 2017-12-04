@@ -7,24 +7,26 @@ Overview
 Cloutier et al 2018 (link to paper) ran a detailed Monte-Carlo simulation of 
 the SLS-PS to make predictions of the survey's planet yield based on our 
 current understanding of the occurrence rates of planets around M dwarfs and 
-host star properties. This repository provides the details from one 
-Monte-Carlo realization for each of the six survey versions presented in Sect. 
-13 of Cloutier et al 2018. 
+host star properties. Their study considered six survey versions which 
+differed in the number of targetted stars and the corresponding observing 
+time dedicated to each star. This repository provides the details from a 
+single Monte-Carlo realization for each of the six survey versions considered 
+in Sect. 13 of Cloutier et al 2018. 
 
-This repository includes the data presented for each survey version, in the 
+This repository includes the data presented for each survey version in the 
 form of a python pickle (https://docs.python.org/3/library/pickle.html), along
-with the scripts required to access the data.
+with the python scripts required to access the data.
 
 Quick Example
 -------------
 
-First clone the repository which includes all of the necessary python scripts
+First, clone the repository which includes all of the necessary python scripts
 and the individual simulation files for each of the six survey versions::
 
   git clone https://github.com/r-cloutier/SLSPS_Simulations.git
   cd ./SLSPS_Simulations
   
-Then from an ipython shell, import the library and load a sample SLSPS
+Then from an ipython shell, import the library and load a sample SLS-PS
 simulation:
 
 .. code:: python
@@ -32,11 +34,11 @@ simulation:
    >>> from SLSPS_Simulations import *
    >>> self = loadpickle('Simulations/SLSPS_Optimized')
 
-The loaded SLSPS simulation *self* contains all of the information for a single
+The loaded SL-SPS simulation *self* contains all of the information for a single
 realization of the *Optimized* survey version including information about the
 target stars and their simulated planetary systems.
 
-For example, we can view the J-band magnitudes of all of the target stars:
+For example, one can view the J-band magnitudes of all of the target stars:
 
 .. code:: python
 
@@ -54,7 +56,7 @@ For example, we can view the J-band magnitudes of all of the target stars:
    7.337   7.787   9.945   7.819   9.35    9.029   8.367   7.901   8.768
    8.323]
   
-We can also view some select properties of one of the host stars:
+One can also view some select properties of one of the host stars:
 
 .. code:: python
 
@@ -62,7 +64,7 @@ We can also view some select properties of one of the host stars:
   >>> print self.Jmag[i], self.Teff[i], self.dist[i], self.Prot[i]
   5.244 3229.971594 1.833516685 121.0
   
-Alternatively and with the appropriate units:
+Or viewed alternatively and with the appropriate units:
 
 .. code:: python
 
@@ -74,15 +76,15 @@ Alternatively and with the appropriate units:
   dist = 1.83 parsecs
   Prot = 121.00 days
   
-All of the contents of the loaded SLSPS simulation file can be viewed in a
+All of the contents of the loaded SLS-PS simulation file can be viewed in
 similar ways as above. See the ipython notebook ipython_example.ipynb for a more
-detailed description and visualization of the files contents.
+detailed description and visualization of each file's contents.
 
 
 Acknowledgement
 ---------------
 
-The results presented in the SLSPS simulation files were derived from the
-Monte-Carlo simulations of the SLSPS presented in Cloutier et al 2017 (link to
+The results presented in the SLS-PS simulation files were derived from the
+Monte-Carlo simulations of the SLS-PS presented in Cloutier et al 2017 (link to
 paper). If you use the results of these simulations in your own work please
 cite the aforementioned study.
