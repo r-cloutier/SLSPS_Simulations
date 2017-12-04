@@ -8,7 +8,7 @@ Cloutier et al 2018 (link to paper) ran a detailed Monte-Carlo simulation of
 the SLS-PS to make predictions of the survey's planet yield based on our 
 current understanding of the occurrence rates of planets around M dwarfs and 
 host star properties. Their study considered six survey versions which 
-differed in the number of targeted stars and the corresponding observing 
+differed in the number of targetted stars and the corresponding observing 
 time dedicated to each star. This repository provides the details from a 
 single Monte-Carlo realization for each of the six survey versions considered 
 in Sect. 13 of Cloutier et al 2018. Simulation files from additional 
