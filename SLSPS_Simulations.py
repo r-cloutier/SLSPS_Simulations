@@ -93,7 +93,13 @@ class SLSPS_Simulation():
         self.imagable_flags = d.imagable_EP[self._inds]
         self.detection_flags = d.detectedCV_noalias_EP[self._inds]
 
-        # compute quantities of interest 
+        # trim excess columns
+        self._trim_planet_arrays()
+
+        # mask non-planets
+        self._apply_planet_mask()
+
+        # compute quantities of interest
         self.mpsinis = self.mps * np.sin(np.deg2rad(self.incs))
         Ms2d = np.repeat(self.Ms, self.Ps.shape[1]).reshape(self.Nstar,
                                                             self.Ps.shape[1])
@@ -105,9 +111,7 @@ class SLSPS_Simulation():
         self.albedos = self.Ps*0 + albedo
         self.contrasts = rvs.planet_contrast(self.rps, self.smas, self.albedos)
 
-        self._trim_planet_arrays()
-                            
-                            
+
     def _trim_planet_arrays(self):
         '''
         Remove unnecessary entires in the planets arrays.
@@ -122,15 +126,26 @@ class SLSPS_Simulation():
         self.HZ_flags        = self.HZ_flags[:,:nplanets_max]
         self.imagable_flags  = self.imagable_flags[:,:nplanets_max]
         self.detection_flags = self.detection_flags[:,:nplanets_max]        
-        self.mpsinis         = self.mpsinis[:,:nplanets_max]
-        self.smas            = self.smas[:,:nplanets_max]
-        self.Ks              = self.Ks[:,:nplanets_max]
-        self.seps            = self.seps[:,:nplanets_max]
-        self.albedos         = self.albedos[:,:nplanets_max]
-        self.contrasts       = self.contrasts[:,:nplanets_max]
 
 
-    def _get_auxiliary(self, d, albedo=.3):
+    def _apply_planet_mask(self):
+        '''
+        Create masked numpy arrays to mask planet entries that do not have a 
+        planet. 
+        '''
+        mask = np.isnan(self.Ps)
+        self.Ps              = ma.masked_array(self.Ps, mask=mask)
+        self.T0s             = ma.masked_array(self.T0s, mask=mask)
+        self.rps             = ma.masked_array(self.rps, mask=mask)
+        self.mps             = ma.masked_array(self.mps, mask=mask)
+        self.incs            = ma.masked_array(self.incs, mask=mask)
+        self.eccs            = ma.masked_array(self.eccs, mask=mask)
+        self.HZ_flags        = ma.masked_array(self.HZ_flags, mask=mask)
+        self.imagable_flags  = ma.masked_array(self.imagable_flags, mask=mask)
+        self.detection_flags = ma.masked_array(self.detection_flags, mask=mask)
+
+
+    def _get_auxiliary(self, d):
         '''
         Get any outstanding parameters of interest.
         '''

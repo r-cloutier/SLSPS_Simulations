@@ -34,7 +34,7 @@ simulation:
    >>> from SLSPS_Simulations import *
    >>> slsps = loadpickle('Simulations/SLSPS_Optimized')
 
-The loaded SL-SPS simulation *slsps* contains all of the information for a single
+The loaded SLS-PS simulation *slsps* contains all of the information for a single
 realization of the *Optimized* survey version including information about the
 target stars and their simulated planetary systems.
 
