@@ -17,8 +17,9 @@ realizations of each survey version are available upon `email request`_.
 .. _email request: cloutier@astro.utoronto.ca
 
 This repository includes the data presented for each survey version in the 
-form of a python pickle (https://docs.python.org/3/library/pickle.html), along
-with the python scripts required to access the data.
+form of a python pickle (https://docs.python.org/2/library/pickle.html), along
+with the python scripts required to access the data. Users should be running 
+a python version no later than 2.7 to avoid errors.
 
 Quick Example
 -------------

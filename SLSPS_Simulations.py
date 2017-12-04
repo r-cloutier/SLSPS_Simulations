@@ -14,7 +14,7 @@ class SLSPS_Simulation():
     def __init__(self, pickle_name, fname, simulation_index=0):
         
         self._pickle_name, self.fname = pickle_name, fname
-	self._simulation_index = int(simulation_index)
+        self._simulation_index = int(simulation_index)
 
 
     def create_SLSPS_simulation(self):
@@ -23,22 +23,22 @@ class SLSPS_Simulation():
         SLSPS to a concise file including all the necessary information.
         '''
         d = loadpickle(self._pickle_name)
-
+        
         # get single realization indices 
         self.Nstar = np.unique(d.starnum_EP).size
         self._inds = np.array([np.where(d.starnum_EP == starnum)[0][self._simulation_index]
                                for starnum in np.unique(d.starnum_EP)]) 
-
+        
         # get parameters
         self._get_star(d)
         self._get_planets(d)
         self._get_auxiliary(d)
         self._get_attribute_descriptions()
-	self._get_attribute_units()
+        self._get_attribute_units()
         
         self._clean_up()
         self._pickleobject()
-        
+
         
 
     def _get_star(self, d):
@@ -233,7 +233,7 @@ class SLSPS_Simulation():
         '''
         del self._pickle_name
         del self._inds
-	del self._simulation_index
+        del self._simulation_index
 
 
     def _pickleobject(self):
