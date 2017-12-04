@@ -5,5 +5,5 @@ import sys
 assert sys.version_info < (2,8)
 try:
     import cPickle as pickle
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     import pickle
