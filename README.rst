@@ -13,7 +13,7 @@ time dedicated to each star. This repository provides the details from a
 single Monte-Carlo realization for each of the six survey versions considered 
 in Sect. 13 of Cloutier et al 2018. Simulation files from additional 
 realizations of each survey version are available upon 
-`email request cloutier@astro.utoronto.ca`_.
+<a href="mailto:cloutier@astro.utoronto.ca">email request</a>.
 
 This repository includes the data presented for each survey version in the 
 form of a python pickle (https://docs.python.org/3/library/pickle.html), along
