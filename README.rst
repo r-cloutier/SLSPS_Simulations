@@ -32,9 +32,9 @@ simulation:
 .. code:: python
 
    >>> from SLSPS_Simulations import *
-   >>> self = loadpickle('Simulations/SLSPS_Optimized')
+   >>> slsps = loadpickle('Simulations/SLSPS_Optimized')
 
-The loaded SL-SPS simulation *self* contains all of the information for a single
+The loaded SL-SPS simulation *slsps* contains all of the information for a single
 realization of the *Optimized* survey version including information about the
 target stars and their simulated planetary systems.
 
@@ -42,7 +42,7 @@ For example, one can view the J-band magnitudes of all of the target stars:
 
 .. code:: python
 
-  >>> print self.Jmag
+  >>> print slsps.Jmag
   [  5.244   5.335   5.189   5.721   5.714   6.222   7.085   6.884   5.934
    5.583   5.95    6.505   6.104   6.106   6.789   6.581   7.258   6.905
    6.301   6.838   6.314   6.724   7.514   6.706   7.09    6.51    7.124
@@ -61,7 +61,7 @@ One can also view some select properties of one of the host stars:
 .. code:: python
 
   >>> i = 0
-  >>> print self.Jmag[i], self.Teff[i], self.dist[i], self.Prot[i]
+  >>> print slsps.Jmag[i], slsps.Teff[i], slsps.dist[i], slsps.Prot[i]
   5.244 3229.971594 1.833516685 121.0
   
 Or viewed alternatively and with the appropriate units:
@@ -70,7 +70,7 @@ Or viewed alternatively and with the appropriate units:
 
   >>> attributes = ['Jmag', 'Teff', 'dist', 'Prot']
   >>> for j in range(len(attributes)):
-  ...     print '%s = %.2f %s' %(attributes[j], getattr(self, attributes[j])[i], self.units_star[attributes[j]])
+  ...     print '%s = %.2f %s' %(attributes[j], getattr(slsps, attributes[j])[i], slsps.units_star[attributes[j]])
   Jmag = 5.24 
   Teff = 3229.97 kelvin
   dist = 1.83 parsecs
