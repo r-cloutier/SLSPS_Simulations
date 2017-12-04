@@ -11,9 +11,10 @@ def loadpickle(fname):
 
 class SLSPS_Simulation():
 
-    def __init__(self, pickle_name, fname):
+    def __init__(self, pickle_name, fname, simulation_index=0):
         
         self._pickle_name, self.fname = pickle_name, fname
+	self._simulation_index = int(simulation_index)
 
 
     def create_SLSPS_simulation(self):
@@ -25,7 +26,7 @@ class SLSPS_Simulation():
 
         # get single realization indices 
         self.Nstar = np.unique(d.starnum_EP).size
-        self._inds = np.array([np.where(d.starnum_EP == starnum)[0][0]
+        self._inds = np.array([np.where(d.starnum_EP == starnum)[0][self._simulation_index]
                                for starnum in np.unique(d.starnum_EP)]) 
 
         # get parameters
@@ -232,6 +233,7 @@ class SLSPS_Simulation():
         '''
         del self._pickle_name
         del self._inds
+	del self._simulation_index
 
 
     def _pickleobject(self):
