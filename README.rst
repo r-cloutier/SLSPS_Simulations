@@ -92,6 +92,6 @@ Acknowledgement
 ---------------
 
 The results presented in the SLS-PS simulation files were derived from the
-Monte-Carlo simulations of the SLS-PS presented in Cloutier et al 2017 (link to
-paper). If you use the results of these simulations in your own work please
+Monte-Carlo simulations of the SLS-PS presented in `Cloutier et al 2018`_. 
+If you use the results of these simulations in your own work please
 cite the aforementioned study.
